@@ -4,7 +4,7 @@ This project runs a simple interactive prompt using LangChain + OpenAI-compatibl
 
 ## File Overview
 
-- `2_test.py`: Main script that:
+- `dynamicPrompt.py`: Main script that:
   - Loads environment variables from `.env`
   - Creates a `ChatOpenAI` client
   - Asks for `role`, `audience`, and `topic`
@@ -27,7 +27,7 @@ Create a `.env` file in the project root:
 API_TOKEN2=your_api_key_here
 ```
 
-`2_test.py` reads `API_TOKEN2`.
+`dynamicPrompt.py` reads `API_TOKEN2`.
 
 ## Install Dependencies
 
@@ -44,13 +44,13 @@ venv\Scripts\python.exe -m pip install -r requirment.txt
 ## Run
 
 ```bash
-python 2_test.py
+python dynamicPrompt.py
 ```
 
 Or with venv Python:
 
 ```bash
-venv\Scripts\python.exe 2_test.py
+venv\Scripts\python.exe dynamicPrompt.py
 ```
 
 You will be prompted for:
