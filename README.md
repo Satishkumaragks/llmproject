@@ -1,65 +1,69 @@
-# First LLM App (LM Studio + LangChain)
+# LongChain Prompt Demo
 
-This project runs a local chat model through the LM Studio OpenAI-compatible API using `LangChain` and `ChatOpenAI`.
+This project runs a simple interactive prompt using LangChain + OpenAI-compatible API.
 
-## What `main.py` does
+## File Overview
 
-1. Loads environment variables from `.env`.
-2. Reads `API_TOKEN2` as the API key.
-3. Connects to LM Studio endpoint: `http://127.0.0.1:1234/v1`.
-4. Lists available local models.
-5. Creates a `ChatOpenAI` client with model:
-   - `nvidia/nemotron-3-nano-4b`
-6. Sends prompt: `Why do parrots talk?`
-7. Prints model response.
+- `2_test.py`: Main script that:
+  - Loads environment variables from `.env`
+  - Creates a `ChatOpenAI` client
+  - Asks for `role`, `audience`, and `topic`
+  - Sends a prompt to the model and prints the response
+- `main.py`: Additional test script
+- `requirment.txt`: Python dependencies
 
 ## Requirements
 
-Dependencies are listed in `requirment.txt`:
+- Python 3.9+
+- A running OpenAI-compatible endpoint (current config uses LM Studio):
+  - `http://127.0.0.1:1234/v1`
+- API token set in `.env`
 
-- langchain==0.3.28
-- langchain-openai==0.3.35
-- openai==2.29.0
-- python-dotenv==1.2.1
-- numpy==2.0.2
-- certifi
-- python-certifi-win32
+## Environment Variables
 
-## Setup
+Create a `.env` file in the project root:
 
-### 1) Install dependencies
+```env
+API_TOKEN2=your_api_key_here
+```
+
+`2_test.py` reads `API_TOKEN2`.
+
+## Install Dependencies
 
 ```bash
 pip install -r requirment.txt
 ```
 
-### 2) Create `.env`
+If you are using the project virtual environment on Windows:
 
-```env
-API_TOKEN2=your_token_here
+```bash
+venv\Scripts\python.exe -m pip install -r requirment.txt
 ```
-
-> Use any value accepted by your LM Studio/OpenAI-compatible local setup.
-
-### 3) Start LM Studio local server
-
-Make sure:
-- A model is loaded in LM Studio.
-- Local server is running at `http://127.0.0.1:1234`.
 
 ## Run
 
 ```bash
-python main.py
+python 2_test.py
 ```
 
-## Expected output
+Or with venv Python:
 
-- Printed list of available models.
-- One generated response to: `Why do parrots talk?`
+```bash
+venv\Scripts\python.exe 2_test.py
+```
+
+You will be prompted for:
+- role (default: `teacher`)
+- audience (default: `5-year-old`)
+- topic (default: `What is Kubernetes?`)
+
+Then the script prints the model explanation.
 
 ## Notes
 
-- `BASE_URL` is hardcoded in `main.py`.
-- The selected model in code must exist in your LM Studio model list.
-- File name is currently `requirment.txt` (not `requirements.txt`).
+- Model currently configured: `nvidia/nemotron-3-nano-4b`
+- If output is blank, verify:
+  - Your local model is loaded and running
+  - `BASE_URL` is reachable
+  - `API_TOKEN2` is present in `.env`
